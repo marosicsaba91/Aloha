@@ -12,7 +12,11 @@ class Scaler : MonoBehaviour
     void Update()
     { 
         transform.localScale = Vector3.one * (GetRealSize() / localSize);
-        transform.position = Vector3.forward * currentDistance;
+
+        Vector3 sphereCenterGlobal = Vector3.forward * currentDistance;
+        Vector3 offsetVector = transform.TransformVector(localCenter);
+
+        transform.position = sphereCenterGlobal - offsetVector;
     }
 
     float GetRealSize()
